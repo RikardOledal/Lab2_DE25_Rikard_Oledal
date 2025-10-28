@@ -4,7 +4,6 @@ class Dot:
     def __init__(self, x: int|float, y: int|float) -> None:
         self.x = x
         self.y = y
-        self.position = (self.x, self.y)
 
     @property
     def x(self):
@@ -27,9 +26,16 @@ class Dot:
         self._y = float(other_y)
 
     def __repr__(self) -> str:
-        return f"x={self.x} y={self.y} position={self.position}"
+        return f"x={self.x} y={self.y}"
+    
+    def __str__(self) -> str:
+        return f"A dot with position ({self.x}, {self.y})"
 
     def translate(self, new_x: int|float, new_y: int|float) -> None:
         self.x = float(new_x)
         self.y = float(new_y)
-        self.position = (float(new_x), float(new_y))
+
+    def position(self):
+        position_tp = (self.x, self.y)
+        return position_tp
+

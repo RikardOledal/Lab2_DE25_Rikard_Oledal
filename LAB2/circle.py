@@ -1,31 +1,22 @@
 from dot import Dot
 from utils import validate_measure, validate_class
+import math
 
-class Rectangle(Dot):
-    def __init__(self, x: int|float, y: int|float, width: int|float, height: int|float) -> None:
+class Circle(Dot):
+    def __init__(self, x: int|float, y: int|float, radius: int|float) -> None:
         super().__init__(x, y)
-        self.width = width
-        self.height = height
-        self._area = self.width*self.height
-        self._perimeter = self.width*2+self.height*2
-
-    @property
-    def width(self):
-        return self._width
-    
-    @width.setter
-    def width(self, other_width):
-        validate_measure(other_width)
-        self._width = float(other_width)
+        self.radius = radius
+        self._area = math.pi * self.radius**2
+        self._perimeter = self.radius * math.pi * 2
     
     @property
-    def height(self):
-        return self._height
+    def radius(self):
+        return self._radius
 
-    @height.setter
-    def height(self, other_height):
-        validate_measure(other_height)
-        self._height = float(other_height)
+    @radius.setter
+    def radius(self, other_radius):
+        validate_measure(other_radius)
+        self._radius = float(other_radius)
 
     @property
     def area(self):
@@ -36,13 +27,13 @@ class Rectangle(Dot):
         return self._perimeter
     
     def __repr__(self) -> str:
-        return f"x={self.x} y={self.y}, height:{self.height}, width:{self.width}"
+        return f"x={self.x} y={self.y} radius:{self.radius}"
     
     def __str__(self) -> str:
-        return f"A Rectangle with height {self.height} and width {self.width} and a centerposition at ({self.x}, {self.y})"
+        return f"A Circle with radius {self.radius} and a centerposition at ({self.x}, {self.y})"
     
     def __eq__(self, other) -> bool:
-        if not isinstance(other, Rectangle):
+        if not isinstance(other, Circle):
             return False
         elif not other.area == self._area:
             return False
@@ -77,8 +68,8 @@ class Rectangle(Dot):
         else:
             return False
 
-    def is_squer(self) -> bool:
-        if self.height == self.width:
+    def is_unitcircle(self) -> bool:
+        if self.x == self.y == 0.0:
             return True
         else:
             return False
