@@ -11,3 +11,9 @@ def validate_measure(measure):
 def validate_class(class1, class2):
     if not type(class1) == type(class2):
         raise TypeError(f"Can't compare different classes")
+    
+def validate_xy(xy):
+    if type(xy) == bool:
+        raise TypeError(f"{xy} should be int or float. Not {type(xy)}")
+    if not isinstance(xy, Number):
+        raise TypeError(f"{xy} should be int or float. Not {type(xy)}")

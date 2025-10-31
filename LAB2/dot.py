@@ -1,4 +1,5 @@
 from numbers import Number
+from utils import validate_xy
 
 class Dot:
     def __init__(self, x: int|float, y: int|float) -> None:
@@ -11,8 +12,7 @@ class Dot:
     
     @x.setter
     def x(self, other_x):
-        if not isinstance(other_x, Number):
-            raise TypeError(f"x should be int or float. Not {type(other_x)}")
+        validate_xy(other_x)
         self._x = float(other_x)
 
     @property
@@ -21,8 +21,7 @@ class Dot:
     
     @y.setter
     def y(self, other_y):
-        if not isinstance(other_y, Number):
-            raise TypeError(f"y should be int or float. Not {type(other_y)}")
+        validate_xy(other_y)
         self._y = float(other_y)
 
     def __repr__(self) -> str:
@@ -32,8 +31,13 @@ class Dot:
         return f"A dot with position ({self.x}, {self.y})"
 
     def translate(self, new_x: int|float, new_y: int|float) -> None:
-        self.x = float(new_x)
-        self.y = float(new_y)
+        validate_xy(new_x)
+        validate_xy(new_y)
+        x_add = float(new_x) + self.x
+        y_add = float(new_y) + self.y
+        self._x = x_add
+        self._y = y_add
+        return self.position()
 
     def position(self):
         position_tp = (self.x, self.y)
