@@ -1,6 +1,8 @@
 from numbers import Number
 
 def validate_measure(measure):
+    if type(measure) == bool:
+        raise TypeError(f"A measure should be a int or float {measure} is a {type(measure)}")
     if not isinstance(measure, Number):
         raise TypeError(f"A measure should be a int or float {measure} is a {type(measure)}")
     if measure <= 0:
