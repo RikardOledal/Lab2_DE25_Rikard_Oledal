@@ -69,7 +69,7 @@ class Circle(Dot):
             return False
 
     def is_unitcircle(self) -> bool:
-        if self.x == self.y == 0.0:
+        if self.x == self.y == 0.0 and self.radius == float(1):
             return True
         else:
             return False
