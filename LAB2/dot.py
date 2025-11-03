@@ -3,8 +3,8 @@ from utils import validate_xy
 
 class Dot:
     def __init__(self, x: int|float, y: int|float) -> None:
-        self.x = x
         self.y = y
+        self.x = x
 
     @property
     def x(self):
@@ -39,7 +39,7 @@ class Dot:
         self._y = y_add
         return self.position()
 
-    def position(self):
+    def position(self) -> tuple:
         position_tp = (self.x, self.y)
-        return position_tp
+        return tuple(position_tp)
 

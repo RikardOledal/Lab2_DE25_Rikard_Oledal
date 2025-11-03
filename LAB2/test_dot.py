@@ -77,16 +77,16 @@ def test_translate_valid():
 
 def test_translate_bool_x_error():
     with raises(TypeError):
-         Dot(x=False,y=2)
+         dotx1y2.translate(True, 1)
 
 def test_translate_bool_y_error():
     with raises(TypeError):
-         Dot(x=2 ,y=True)
+         dotx1y2.translate(1, True)
 
 def test_translate_str_x_error():
     with raises(TypeError):
-         Dot(x="word",y=2)
+         dotx1y2.translate("word", 1)
 
 def test_translate_str_y_error():
     with raises(TypeError):
-         Dot(x=2,y="word")
+         dotx1y2.translate(1, "word")
