@@ -3,7 +3,7 @@ from utils import validate_measure, validate_class
 import math
 
 class Circle(Dot):
-    def __init__(self, x: int|float, y: int|float, radius: int|float) -> None:
+    def __init__(self, radius: int|float, x: int|float =0, y: int|float =0) -> None:
         super().__init__(x, y)
         self.radius = radius
         self._area = math.pi * self.radius**2
