@@ -43,48 +43,46 @@ class Rectangle(Dot):
     def __eq__(self, other) -> bool:
         if not isinstance(other, Rectangle):
             return False
-        elif not other.area == self._area:
-            return False
-        elif not other.perimeter == self._area:
-            return False
-        else:
+        elif other.area == self.area and other.perimeter == self.perimeter:
             return True
+        else:
+            return False
         
     def __lt__(self, other) -> bool:
         validate_class(self, other)
-        if self.area <= other.area:
-            return False
-        elif self.perimeter <= other.perimeter:
-            return False
-        else:
+        if self.area < other.area:
             return True
+        elif self.area == other.area and self.perimeter < other.perimeter:
+            return True
+        else:
+            return False
     
     def __le__(self, other) -> bool:
         validate_class(self, other)
-        if self.area > other.area:
-            return False
-        elif self.perimeter > other.perimeter:
-            return False
-        else:
+        if self.area < other.area:
             return True
+        elif self.area == other.area and self.perimeter <= other.perimeter:
+            return True
+        else:
+            return False
         
     def __gt__(self, other) -> bool:
         validate_class(self, other)
-        if self.area <= other.area:
-            return False
-        elif self.perimeter <= other.perimeter:
-            return False
-        else:
+        if self.area > other.area:
             return True
+        elif self.area == other.area and self.perimeter > other.perimeter:
+            return True
+        else:
+            return False
         
     def __ge__(self, other) -> bool:
         validate_class(self, other)
-        if self.area < other.area:
-            return False
-        elif self.perimeter < other.perimeter:
-            return False
-        else:
+        if self.area > other.area:
             return True
+        elif self.area == other.area and self.perimeter >= other.perimeter:
+            return True
+        else:
+            return False
 
     def is_squer(self) -> bool:
         if self.height == self.width:
