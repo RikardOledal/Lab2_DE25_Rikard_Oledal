@@ -89,3 +89,8 @@ class Rectangle(Dot):
             return True
         else:
             return False
+        
+    def corner_position(self) -> tuple:
+        corner_x = self.x - (self.width/2)
+        corner_y = self.y - (self.height/2)
+        return (corner_x, corner_y)
