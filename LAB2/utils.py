@@ -22,4 +22,4 @@ def validate_cube(size_mesure, other_mesure):
     if not isinstance(other_mesure, Number):
         raise TypeError(f"A measure should be a int or float {other_mesure} is a {type(other_mesure)}")
     if size_mesure != other_mesure:
-        raise ValueError(f"A cube can't change just one mesure. Tyr changing size instead")
+        raise ValueError(f"A cube can't change just one mesure. Try changing size instead")
