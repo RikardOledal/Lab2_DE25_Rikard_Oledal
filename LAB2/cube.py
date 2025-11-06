@@ -1,10 +1,46 @@
 from dot import Dot
-from utils import validate_measure, validate_class, validate_cube
+from rectangle import Rectangle
+from utils import validate_measure, validate_class, validate_cube, validate_xy
 
 class Cube(Dot):
-    def __init__(self, x: int|float, y: int|float, size: int|float):
+    """
+    A class representing a cube in a three-dimensional coordinate system.
+
+    Attributes:
+    - x (float): The x-coordinate of the centerposition
+    - y (float): The y-coordinate of the centerposition
+    - z (float): The z-coordinate of the centerposition
+    - size (float): Representing the size of width, height and depth since they should be the same in a cube
+    - width (float): The width of the cube
+    - height (float): The height of the cube
+    - depth (float): The depth of the cube
+    - area (float): The area of all 6 sides of the cube.
+    - perimeter (float): The perimeter of the cube by adding all 12 edges.
+    - volume (float): The volume of the cube by multiplying width, depth and height
+
+    Operators
+    - '==', '>', '>=', '<', '<='
+    - To compare cube the operator checks the size for comparance
+    
+    Methods:
+    - translate(): Moves the cube centerposition in the coordinate system.
+    - position(): Gives the coordinates of the centerposition as a tuple
+
+    Example usage:
+    >>> cube1 = Cube(size=1,x=2,z=3)
+    >>> cube2 = Cube(x=3, y=4, size=2, z=1)
+    >>> cube1 < cube2
+    True
+    >>> cube1.position()
+    (2.0, 0.0, 3.0)
+    >>> cube1.translate(-1, 2, 4)
+    (1.0, 2.0, 7.0)
+    """
+    def __init__(self, size: int|float, x: int|float=0, y: int|float=0, z: int|float=0,):
         super().__init__(x, y)
         self.size = size
+        self.z = z
+        self.rectangle = Rectangle(self.x,self.y,self.width,self.height)
 
     @property
     def size(self):
@@ -18,6 +54,15 @@ class Cube(Dot):
         self._height = float(other_size)
         self._width = float(other_size)
     
+    @property
+    def z(self) -> float:
+        return self._z
+    
+    @z.setter
+    def z(self, other_z) -> None:
+        validate_xy(other_z)
+        self._z = float(other_z)
+
     @property
     def width(self):
         return self._width
@@ -58,10 +103,10 @@ class Cube(Dot):
         return self.size**3
     
     def __repr__(self) -> str:
-        return f"x={self.x} y={self.y}, height:{self.height}, width:{self.width}, depth:{self.width}"
+        return f"x={self.x} y={self.y} z={self.z}, height:{self.height}, width:{self.width}, depth:{self.width}"
     
     def __str__(self) -> str:
-        return f"A Cube with height, width and depth of {self.size} and a centerposition at ({self.x}, {self.y})"
+        return f"A Cube with height, width and depth of {self.size} and a centerposition at ({self.x}, {self.y}, {self.z})"
     
     def __eq__(self, other) -> bool:
         if not isinstance(other, Cube):
@@ -98,3 +143,19 @@ class Cube(Dot):
             return True
         else:
             return False
+        
+    def position(self) -> tuple:
+        position_tp = (self.x, self.y, self.z)
+        return tuple(position_tp)
+    
+    def translate(self, new_x: int|float=0, new_y: int|float=0, new_z: int|float=0) -> tuple:
+        validate_xy(new_x)
+        validate_xy(new_y)
+        validate_xy(new_z)
+        x_add = float(new_x) + self.x
+        y_add = float(new_y) + self.y
+        z_add = float(new_z) + self.z
+        self._x = x_add
+        self._y = y_add
+        self._z = z_add
+        return self.position()

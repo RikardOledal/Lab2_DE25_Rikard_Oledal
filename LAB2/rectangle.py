@@ -2,36 +2,70 @@ from dot import Dot
 from utils import validate_measure, validate_class
 
 class Rectangle(Dot):
-    def __init__(self, x: int|float, y: int|float, width: int|float, height: int|float) -> None:
+    """
+    A class representing a rectangle in a two-dimensional coordinate system.
+
+    Attributes:
+    - x (float): The x-coordinate of the centerposition
+    - y (float): The y-coordinate of the centerposition
+    - width (float): The width of the rectangle
+    - height (float): The height of the rectangle
+    - area (float): The area of the rectangle created by multipying height and width of the rectangle
+    - perimeter (float): The perimeter of the rectangle created by adding all sides together
+
+    Operators
+    - '==', '>', '>=', '<', '<='
+    - To compare rectangles the operator first checks the area for comparance. If the area are the same it checks perimeter for comparance.
+    Only a Rectangle who have the same area and perimeter are equal.
+    
+    Methods:
+    - is_squer(): Checks is the rectangle is a squer
+    - position(): Gives the coordinates of the centerposition as a tuple
+    - translate(): Moves the rectangles centerposition in the coordinate system.
+    - corner_position() Gives the lower left corner-coordinates as a tuple
+    
+    Example usage:
+    >>> rect1 = Rectangle(x=1, y=2, width=4, height=6)
+    >>> rect2 = Rectangle(x=3, y=4, width=3, height=8)
+    >>> rect1.is_squer()
+    False
+    >>> rect1 < rect2
+    >>> rect1.corner_position()
+    (-1, -1)
+    >>> rect1.position()
+    (1, 2)
+    >>> rect1.translate(2, 4)
+    (3, 6)
+    """
+    def __init__(self, x: int|float=0, y: int|float=0, width: int|float=1, height: int|float=1) -> None:
         super().__init__(x, y)
         self.width = width
         self.height = height
-        self._perimeter = self.width*2+self.height*2
 
     @property
-    def width(self):
+    def width(self) -> float:
         return self._width
     
     @width.setter
-    def width(self, other_width):
+    def width(self, other_width) -> None:
         validate_measure(other_width)
         self._width = float(other_width)
     
     @property
-    def height(self):
+    def height(self) -> float:
         return self._height
 
     @height.setter
-    def height(self, other_height):
+    def height(self, other_height) -> None:
         validate_measure(other_height)
         self._height = float(other_height)
 
     @property
-    def area(self):
+    def area(self) -> float:
         return self.width*self.height
     
     @property
-    def perimeter(self):
+    def perimeter(self) -> float:
         return self.width*2+self.height*2
     
     def __repr__(self) -> str:
@@ -94,3 +128,4 @@ class Rectangle(Dot):
         corner_x = self.x - (self.width/2)
         corner_y = self.y - (self.height/2)
         return (corner_x, corner_y)
+    
