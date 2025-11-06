@@ -36,7 +36,7 @@ class Cube(Dot):
     >>> cube1.translate(-1, 2, 4)
     (1.0, 2.0, 7.0)
     """
-    def __init__(self, size: int|float, x: int|float=0, y: int|float=0, z: int|float=0,):
+    def __init__(self, size: int|float=1, x: int|float=0, y: int|float=0, z: int|float=0,):
         super().__init__(x, y)
         self.size = size
         self.z = z
