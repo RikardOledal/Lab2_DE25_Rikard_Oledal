@@ -1,9 +1,7 @@
 # Lab2 - Geometry
 The task was to create geometric shapes that could be compared. I was also going to create a Shape2dPlotter that could plot the shapes in a coordinate system.
 
-<a href="https://www.youtube.com/watch?v=ynXYXEkiNHc" target="_blank">
-  <img src="LAB2_link_pic" alt="video" width="600">
-</a>
+[![video](LAB2_link_pic.png)](https://www.youtube.com/watch?v=ynXYXEkiNHc)
 
 ## UML-chart
 ![UML-Chart](/UML_Geometry_Final.png)
