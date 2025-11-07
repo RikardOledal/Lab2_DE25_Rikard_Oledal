@@ -3,6 +3,7 @@ The task was to create geometric shapes that could be compared. I was also going
 
 [![video](/LAB2_link_pic.png)](https://www.youtube.com/watch?v=ynXYXEkiNHc)
 
+
 ## UML-chart
 ![UML-Chart](/UML_Geometry_Final.png)
 The code consists of 5 shape classes and a class for Shape2dPlotter. All shape classes inherit from Dot.
