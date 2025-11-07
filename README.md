@@ -1,6 +1,7 @@
 # Lab2 - Geometry
 The task was to create geometric shapes that could be compared. I was also going to create a Shape2dPlotter that could plot the shapes in a coordinate system.
 
+## Video
 [![video](/LAB2_link_pic.png)](https://www.youtube.com/watch?v=ynXYXEkiNHc)
 
 
@@ -13,8 +14,18 @@ The code consists of 5 shape classes and a class for Shape2dPlotter. All shape c
 The code consists of 5 shape classes and a class for Shape2dPlotter. All shape classes inherit from Dot.
 The two 3d classes have their respective 2d classes as compositions. This allows Shape2dPlotter to plot these as well, but in 2D.
 
+## Operators
+Comparison operators first compare Area and then Perimeter if the Areas are equal.
+
 ## Shape2dPlotter
 Shape2dPlotter takes in shape classes and plots them in a coordinate system. In order for the area to adapt to the size and location of the shapes, it calculates where the edge boundaries go. I also wanted both the x and y scales to be the same size and go to an even 10.
+
+## Unittesting
+207 unit tests that test each form and check for Error and whether you get correct answers.
+
+## Manual testing
+I geometry.ipynb I did some manualtest.
+
 
 
 
