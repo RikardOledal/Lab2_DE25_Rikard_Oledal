@@ -24,6 +24,7 @@ class Dot:
         self.y = y
         self.x = x
 
+    # Setters and getters
     @property
     def x(self) -> float:
         return self._x
@@ -49,13 +50,15 @@ class Dot:
     @property
     def perimeter(self):
         return 0
-        
+
+    # Dundermethods   
     def __repr__(self) -> str:
         return f"x={self.x} y={self.y}"
     
     def __str__(self) -> str:
         return f"A dot with position ({self.x}, {self.y})"
     
+    # Operators overload   
     def __eq__(self, other) -> bool:
         if not isinstance(other, type(self)):
             return False
@@ -99,8 +102,9 @@ class Dot:
             return True
         else:
             return False
-
-    def translate(self, new_x: int|float=0, new_y: int|float=0) -> tuple:
+    
+    # Methods
+    def translate(self, new_x: int|float=0, new_y: int|float=0) -> tuple: # Moves centerposition and return new centerposition as a Tuple
         validate_xy(new_x)
         validate_xy(new_y)
         x_add = float(new_x) + self.x
@@ -109,7 +113,7 @@ class Dot:
         self._y = y_add
         return self.position()
 
-    def position(self) -> tuple:
+    def position(self) -> tuple: # Return centerposition as a Tuple
         position_tp = (self.x, self.y)
         return tuple(position_tp)
 

@@ -41,7 +41,8 @@ class Rectangle(Dot):
         super().__init__(x, y)
         self.width = width
         self.height = height
-
+    
+    # Setters and getters
     @property
     def width(self) -> float:
         return self._width
@@ -68,19 +69,21 @@ class Rectangle(Dot):
     def perimeter(self) -> float:
         return self.width*2+self.height*2
     
+    # Dundermethods
     def __repr__(self) -> str:
         return f"x={self.x} y={self.y}, height:{self.height}, width:{self.width}"
     
     def __str__(self) -> str:
         return f"A Rectangle with height {self.height} and width {self.width} and a centerposition at ({self.x}, {self.y})"
     
-    def is_squer(self) -> bool:
+    # Methods
+    def is_squer(self) -> bool: # Determins if all sides are equal and return True or False
         if self.height == self.width:
             return True
         else:
             return False
         
-    def corner_position(self) -> tuple:
+    def corner_position(self) -> tuple: # Calculate the coordinates of the left bottom corner of the rectangle
         corner_x = self.x - (self.width/2)
         corner_y = self.y - (self.height/2)
         return (corner_x, corner_y)

@@ -41,6 +41,7 @@ class Sphere(Circle):
         self.z = z
         self.circle = Circle(x=self.x,y=self.y, radius=self.radius)
     
+    # Setters and getters
     @property
     def z(self) -> float:
         return self._z
@@ -58,12 +59,14 @@ class Sphere(Circle):
     def area(self) -> float:
         return 4 * math.pi * self.radius**2
     
+    # Dundermethods
     def __repr__(self) -> str:
         return f"x={self.x} y={self.y} z={self.z}, radius:{self.radius}"
     
     def __str__(self) -> str:
         return f"A Sphere with radius {self.radius} and a centerposition at ({self.x}, {self.y}, {self.z})"
     
+    # Methods
     def position(self) -> tuple:
         position_tp = (self.x, self.y, self.z)
         return tuple(position_tp)
@@ -80,10 +83,10 @@ class Sphere(Circle):
         self._z = z_add
         return self.position()
 
-    def is_unitcircle(self) -> None:
+    def is_unitcircle(self) -> None: # Since its not a circle a Sphere is going to return False
         return False
 
-    def is_unitsphere(self) -> bool:
+    def is_unitsphere(self) -> bool: # Determins if coordinates are (0, 0, 0) and radius is 1 and returns True or False
         if self.x == self.y == self.z == 0.0 and self.radius == float(1):
             return True
         else:

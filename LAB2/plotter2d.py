@@ -37,6 +37,7 @@ class Shape2dPlotter():
         self._rectangles = []
         self._cubes = []
 
+        # Sorting all shapes into lists and adjusting limits to fit the shapes
         for shape in shapes:
             if type(shape) == Dot:
                 if shape.x > self.limits["max"]: self.limits["max"] = shape.x
@@ -82,27 +83,35 @@ class Shape2dPlotter():
 
     
     def plot(self):
+        # Create limit for coordinate system
         limit = round((max([abs(self.limits["min"]),abs(self.limits["max"])]) + 2)/10)*10
         dot_size = limit/100
 
         maxlimit = limit
         minlimit = maxlimit*-1
 
+        # Create the coordinate system
         fig, ax = plt.subplots(1)
         ax.set(
             title=f"{len(self._dots)+len(self._circles)+len(self._spheres)+len(self._rectangles)+len(self._cubes)} shapes",
             xlim=(minlimit, maxlimit),
             ylim=(minlimit, maxlimit),
         )
+        # Determins the scale for x and y axis
         ax.yaxis.set_major_locator(ticker.MultipleLocator(2))
         ax.xaxis.set_major_locator(ticker.MultipleLocator(2))
+
+        # Move the spines to get a centered 0-position
         ax.spines["left"].set_position("zero")
         ax.spines["right"].set_visible(False)
         ax.spines["bottom"].set_position("zero")
         ax.spines["top"].set_visible(False)
-        ax.grid()
-        ax.set_aspect("equal", adjustable="box")
 
+        # Adding grid and adjusting the box to make circles round instead of eliptic
+        ax.grid(alpha=0.4)
+        ax.set_aspect("equal", adjustable="box")
+        
+        # Adding the shapes
         for sphere in self._spheres:
             sphere_plot = patches.Circle(xy=sphere.position(), radius=sphere.radius, edgecolor="orange", facecolor="yellow", linewidth=2, alpha=0.5)
             fig.gca().add_patch(sphere_plot)

@@ -37,7 +37,8 @@ class Circle(Dot):
     def __init__(self, radius: int|float=1, x: int|float =0, y: int|float =0) -> None:
         super().__init__(x, y)
         self.radius = radius
-    
+
+    # Setters and getters
     @property
     def radius(self) -> float:
         return self._radius
@@ -55,13 +56,15 @@ class Circle(Dot):
     def perimeter(self) -> float:
         return self.radius * math.pi * 2
     
+    # Dundermethods
     def __repr__(self) -> str:
         return f"x={self.x} y={self.y} radius:{self.radius}"
     
     def __str__(self) -> str:
         return f"A Circle with radius {self.radius} and a centerposition at ({self.x}, {self.y})"
     
-    def is_unitcircle(self) -> bool:
+    # Methods
+    def is_unitcircle(self) -> bool: # Determins if coordinates are (0, 0) and radius is 1 and returns True or False
         if self.x == self.y == 0.0 and self.radius == float(1):
             return True
         else:

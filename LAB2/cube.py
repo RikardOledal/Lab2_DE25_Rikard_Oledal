@@ -42,6 +42,7 @@ class Cube(Dot):
         self.z = z
         self.rectangle = Rectangle(self.x,self.y,self.width,self.height)
 
+    # Setters and getters
     @property
     def size(self):
         return self._size
@@ -102,17 +103,19 @@ class Cube(Dot):
     def volume(self):
         return self.size**3
     
+    # Dundermethods
     def __repr__(self) -> str:
         return f"x={self.x} y={self.y} z={self.z}, height:{self.height}, width:{self.width}, depth:{self.width}"
     
     def __str__(self) -> str:
         return f"A Cube with height, width and depth of {self.size} and a centerposition at ({self.x}, {self.y}, {self.z})"
-        
-    def position(self) -> tuple:
+    
+    # Methods
+    def position(self) -> tuple: # Return centerposition as a Tuple
         position_tp = (self.x, self.y, self.z)
         return tuple(position_tp)
     
-    def translate(self, new_x: int|float=0, new_y: int|float=0, new_z: int|float=0) -> tuple:
+    def translate(self, new_x: int|float=0, new_y: int|float=0, new_z: int|float=0) -> tuple: # Moves centerposition and return new centerposition as a Tuple
         validate_xy(new_x)
         validate_xy(new_y)
         validate_xy(new_z)
