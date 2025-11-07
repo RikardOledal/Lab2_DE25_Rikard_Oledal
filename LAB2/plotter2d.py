@@ -5,6 +5,7 @@ from circle import Circle
 from dot import Dot
 from cube import Cube
 from sphere import Sphere
+import matplotlib.ticker as ticker
 
 
 class Shape2dPlotter():
@@ -81,17 +82,20 @@ class Shape2dPlotter():
 
     
     def plot(self):
-        limit = round((max([abs(self.limits["min"]),abs(self.limits["max"])]) + 5)/10)*10
+        limit = round((max([abs(self.limits["min"]),abs(self.limits["max"])]) + 2)/10)*10
+        dot_size = limit/100
 
         maxlimit = limit
         minlimit = maxlimit*-1
 
         fig, ax = plt.subplots(1)
         ax.set(
-            title=f"{len(self._circles)+len(self._dots)+{len(self._rectangles)}+{len(self.self._cubes)}} circles and {len(self._rectangles)} rectangles",
+            title=f"{len(self._dots)+len(self._circles)+len(self._spheres)+len(self._rectangles)+len(self._cubes)} shapes",
             xlim=(minlimit, maxlimit),
             ylim=(minlimit, maxlimit),
         )
+        ax.yaxis.set_major_locator(ticker.MultipleLocator(2))
+        ax.xaxis.set_major_locator(ticker.MultipleLocator(2))
         ax.spines["left"].set_position("zero")
         ax.spines["right"].set_visible(False)
         ax.spines["bottom"].set_position("zero")
@@ -104,7 +108,7 @@ class Shape2dPlotter():
             fig.gca().add_patch(sphere_plot)
 
         for cube in self._cubes:
-            cube_plot = patches.Rectangle(xy=cube.corner_position(), width=cube.width, height=cube.height, edgecolor="red", facecolor="pink", linewidth=2, alpha=0.5)
+            cube_plot = patches.Rectangle(xy=cube.corner_position(), width=cube.width, height=cube.height, edgecolor="red", facecolor="pink", linewidth=2, alpha=0.7)
             fig.gca().add_patch(cube_plot)
 
         for circle in self._circles:
@@ -116,7 +120,7 @@ class Shape2dPlotter():
             fig.gca().add_patch(rect_plot)
 
         for dot in self._dots:
-            dot_plot = patches.Circle(xy=dot.position(), radius=0.2, edgecolor="blue", facecolor="blue", linewidth=2 )
+            dot_plot = patches.Circle(xy=dot.position(), radius=dot_size, edgecolor="blue", facecolor="blue", linewidth=2 )
             fig.gca().add_patch(dot_plot)
 
         
