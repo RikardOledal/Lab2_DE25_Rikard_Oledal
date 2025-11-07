@@ -81,7 +81,7 @@ class Sphere(Circle):
         return self.position()
 
     def is_unitcircle(self) -> None:
-        NotImplemented
+        return False
 
     def is_unitsphere(self) -> bool:
         if self.x == self.y == self.z == 0.0 and self.radius == float(1):
