@@ -61,42 +61,6 @@ class Circle(Dot):
     def __str__(self) -> str:
         return f"A Circle with radius {self.radius} and a centerposition at ({self.x}, {self.y})"
     
-    def __eq__(self, other) -> bool:
-        if not isinstance(other, Circle):
-            return False
-        elif not other.radius == self.radius:
-            return False
-        else:
-            return True
-        
-    def __lt__(self, other) -> bool:
-        validate_class(self, other)
-        if self.radius < other.radius:
-            return True
-        else:
-            return False
-    
-    def __le__(self, other) -> bool:
-        validate_class(self, other)
-        if self.radius <= other.radius:
-            return True
-        else:
-            return False
-        
-    def __gt__(self, other) -> bool:
-        validate_class(self, other)
-        if self.radius > other.radius:
-            return True
-        else:
-            return False
-        
-    def __ge__(self, other) -> bool:
-        validate_class(self, other)
-        if self.radius >= other.radius:
-            return True
-        else:
-            return False
-
     def is_unitcircle(self) -> bool:
         if self.x == self.y == 0.0 and self.radius == float(1):
             return True

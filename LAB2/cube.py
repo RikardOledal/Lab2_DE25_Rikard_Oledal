@@ -107,42 +107,6 @@ class Cube(Dot):
     
     def __str__(self) -> str:
         return f"A Cube with height, width and depth of {self.size} and a centerposition at ({self.x}, {self.y}, {self.z})"
-    
-    def __eq__(self, other) -> bool:
-        if not isinstance(other, Cube):
-            return False
-        elif self.size == other.size:
-            return True
-        else:
-            return False
-        
-    def __lt__(self, other) -> bool:
-        validate_class(self, other)
-        if self.size < other.size:
-            return True
-        else:
-            return False
-    
-    def __le__(self, other) -> bool:
-        validate_class(self, other)
-        if self.size <= other.size:
-            return True
-        else:
-            return False
-        
-    def __gt__(self, other) -> bool:
-        validate_class(self, other)
-        if self.size > other.size:
-            return True
-        else:
-            return False
-        
-    def __ge__(self, other) -> bool:
-        validate_class(self, other)
-        if self.size >= other.size:
-            return True
-        else:
-            return False
         
     def position(self) -> tuple:
         position_tp = (self.x, self.y, self.z)

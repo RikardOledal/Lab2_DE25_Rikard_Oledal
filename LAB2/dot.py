@@ -1,5 +1,5 @@
 from numbers import Number
-from utils import validate_xy
+from utils import validate_xy, validate_class
 
 class Dot:
     """
@@ -42,11 +42,63 @@ class Dot:
         validate_xy(other_y)
         self._y = float(other_y)
 
+    @property
+    def area(self) -> float:
+        return 0
+
+    @property
+    def perimeter(self):
+        return 0
+        
     def __repr__(self) -> str:
         return f"x={self.x} y={self.y}"
     
     def __str__(self) -> str:
         return f"A dot with position ({self.x}, {self.y})"
+    
+    def __eq__(self, other) -> bool:
+        if not isinstance(other, type(self)):
+            return False
+        elif other.area == self.area and other.perimeter == self.perimeter:
+            return True
+        else:
+            return False
+        
+    def __lt__(self, other) -> bool:
+        validate_class(other)
+        if self.area < other.area:
+            return True
+        elif self.area == other.area and self.perimeter < other.perimeter:
+            return True
+        else:
+            return False
+    
+    def __le__(self, other) -> bool:
+        validate_class(other)
+        if self.area < other.area:
+            return True
+        elif self.area == other.area and self.perimeter <= other.perimeter:
+            return True
+        else:
+            return False
+        
+    def __gt__(self, other) -> bool:
+        validate_class(other)
+        if self.area > other.area:
+            return True
+        elif self.area == other.area and self.perimeter > other.perimeter:
+            return True
+        else:
+            return False
+        
+    def __ge__(self, other) -> bool:
+        validate_class(other)
+        if self.area > other.area:
+            return True
+        elif self.area == other.area and self.perimeter >= other.perimeter:
+            return True
+        else:
+            return False
 
     def translate(self, new_x: int|float=0, new_y: int|float=0) -> tuple:
         validate_xy(new_x)

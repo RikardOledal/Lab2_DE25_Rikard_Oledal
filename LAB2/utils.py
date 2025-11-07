@@ -8,9 +8,13 @@ def validate_measure(measure):
     if measure <= 0:
         raise ValueError(f"A measure should be a positive {measure} is a not")
     
-def validate_class(class1, class2):
-    if not type(class1) == type(class2):
-        raise TypeError(f"Can't compare different classes")
+def validate_class(check_class):
+    if isinstance(check_class,(str, bool, Number)):
+        raise TypeError(f"Can only compare shapes")
+    if check_class.area == None:
+        raise TypeError(f"Can't compare classes without area")
+    if check_class.perimeter == None:
+        raise TypeError(f"Can't compare classes without perimeter")
     
 def validate_xy(xy):
     if type(xy) == bool:
